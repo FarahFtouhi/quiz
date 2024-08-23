@@ -37,10 +37,7 @@ class Questions {
     this.character = character;
   }
 }
-let obj ={}
-this.points={
-  
-}
+
 let naruto = new Questions(
   "A ninja with a dream of becoming the strongest ninja and leader of his village.",
   "naruto",
@@ -52,23 +49,60 @@ let deathnote = new Questions(
   "A high school student who gains the powers of a death god and uses them to bring justice.",
   "Death Note",
   10,
-  "https://m.media-amazon.com/images/M/MV5BNjRiNmNjMmMtN2U2Yi00ODgxLTk3OTMtMmI1MTI1NjYyZTEzXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg"
+  "https://m.media-amazon.com/images/M/MV5BNjRiNmNjMmMtN2U2Yi00ODgxLTk3OTMtMmI1MTI1NjYyZTEzXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
+
+    "/assets/img/death.png"
+
 );
-document.getElementById("question").innerHTML="A ninja with a dream of becoming the strongest ninja and leader of his village."
+// document.getElementById("question").innerHTML="A ninja with a dream of becoming the strongest ninja and leader of his village."
   
-document.getElementById("answer").innerHTML="naruto"
-document.getElementById("cover").src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu5Iae514loeF7MOo6kwRdOL0FuFlyKdl2toRrSirbL7c9bUXi8gW5Iwvv9L_yjJJdNI8&usqp=CAU"
-document.getElementById("character").src="https://i.pinimg.com/736x/22/de/8d/22de8dbda07ba5571a97736b12905a17.jpg"
+// document.getElementById("answer").innerHTML="naruto"
+// document.getElementById("cover").src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu5Iae514loeF7MOo6kwRdOL0FuFlyKdl2toRrSirbL7c9bUXi8gW5Iwvv9L_yjJJdNI8&usqp=CAU"
+// document.getElementById("character").src="https://i.pinimg.com/736x/22/de/8d/22de8dbda07ba5571a97736b12905a17.jpg"
 
 
-document.getElementById("question").innerHTML="A high school student who gains the powers of a death god and uses them to bring justice."
+// document.getElementById("question").innerHTML="A high school student who gains the powers of a death god and uses them to bring justice."
   
-document.getElementById("answer").innerHTML="Death Note"
-document.getElementById("cover").src="https://m.media-amazon.com/images/M/MV5BNjRiNmNjMmMtN2U2Yi00ODgxLTk3OTMtMmI1MTI1NjYyZTEzXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg"
-document.getElementById("character").src="/assets/img/death.png"
+// document.getElementById("answer").innerHTML="Death Note"
+// document.getElementById("cover").src="https://m.media-amazon.com/images/M/MV5BNjRiNmNjMmMtN2U2Yi00ODgxLTk3OTMtMmI1MTI1NjYyZTEzXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg"
+// document.getElementById("character").src="/assets/img/death.png"
+
+const quiz_Qestions=[naruto,deathnote];
+
+let question =document.getElementById("question")
+let voicegun  =document.getElementById("gun")
+let voiceyes=document.getElementById("yes")
+let voiceyouShD =document.getElementById("youShD")
+let answer=document.getElementById("answer")
+let char= document.getElementById("character")
+let cov =document.getElementById("cover")
+let pts=document.getElementById("score")
+
+ let index=0
+function displayfunction(){
+
+  question.innerHTML=quiz_Qestions[index].description
+  cov.src=quiz_Qestions[index].cover
+  char.src=quiz_Qestions[index].character
 
 
+}
+let checkanswer=()=>{
+  if(answer.value.toLowerCase()===quiz_Qestions[index].answer.toLowerCase()){
+    voiceyes.play()
+    index++
+    answer.value = ""
+    pts.innerHTML = quiz_Qestions[index].points
+    displayfunction()
+  
+  } 
+  else{
+    voicegun.play()
+    setTimeout(()=>voiceyouShD.play(),1000)
+  }
 
+}
+displayfunction()
 
 
 
